@@ -21,6 +21,8 @@ function addBookToLibrary (title, author, pages, read) {
      return Book();
 }
 
+// Looping the books to appear on HTML.
+
 function displayBooks () {
     const library = document.getElementById('library');
     library.innerHTML = '';
@@ -28,11 +30,13 @@ function displayBooks () {
 myLibrary.forEach(book => {
     const card = document.createElement('div');
     card.classList.add ('card');
+    card.setAttribute('data-id', book.id);
     card.innerHTML = `
+    <p> <strong> ID: </strong> ${book.id} </p>
     <h2> ${book.title} </h2>
     <p> ${book.author} </p>
     <p> ${book.pages} </p>
-    <p> ${book.read  ? true : false} </p>
+    <p> ${book.read  ? 'Yes' : 'No'} </p>
     
     <button class = 'toggle'> Toggle Read </button>
     <button class = 'remove-book'> Remove Book </button>`;
@@ -52,6 +56,9 @@ myLibrary.forEach(book => {
     library.appendChild(card);
 })
 }
+
+
+// Form Handling.
 
 const button = document.getElementById('new-book');
 const form = document.getElementById ('book-form');
